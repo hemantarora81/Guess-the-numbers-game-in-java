@@ -1,0 +1,79 @@
+package com.company;
+import java.util.Random;
+import java.util.Scanner;
+
+class Game {
+    private int userinput;
+    private int computerinput;
+
+    public int getComputerinput() {
+        return computerinput;
+    }
+
+    public void setComputerinput(int computerinput) {
+        this.computerinput = computerinput;
+    }
+
+    public int getUserinput() {
+        return userinput;
+    }
+
+    public void setUserinput(int userinput) {
+        this.userinput = userinput;
+    }
+
+    public int gameX(int computerinputX) {
+        computerinputX = computerinput;
+        return computerinputX;
+    }
+
+    public int takeuserInput(int x) {
+        x = userinput;
+        return x;
+    }
+
+    public void isCorrectNumber(int a, int b, int c) {          
+        int d = a-b;
+        d = Math.abs(d);
+        if (a == b) {
+            System.out.println("Yay!! You Win Your Guessing Number is Correct\n");
+            System.out.format("Total Guesses: %d", c + 1);
+            System.exit(0);
+        } else if (d >= 11) {
+            System.out.println("Difference is more than 11,Try Again Later...\n");
+            System.exit(0);
+        } else {
+            System.out.println("Difference Between Both is of 10.Try More All The Best ");
+        }
+    }
+}
+
+
+
+public class guessthenumber_game {
+    public static void main(String[] args) {
+        int numberofguesses = 1;
+        Scanner sc = new Scanner(System.in);
+        Random rm = new Random();
+        Game gameon = new Game();
+
+        int computerinput = rm.nextInt(100);
+        gameon.setComputerinput(computerinput);
+
+        System.out.print("Enter a number Between 0-100\n");
+        int userinput = sc.nextInt();
+        gameon.setUserinput(userinput);
+
+        System.out.format("System input: %d \n",gameon.gameX(computerinput));
+        gameon.isCorrectNumber(userinput, gameon.gameX(computerinput),numberofguesses);
+        if(userinput!= gameon.gameX(computerinput)){
+            while (true){
+                System.out.println("Enter a Number Again");
+                userinput=sc.nextInt();
+                gameon.isCorrectNumber(userinput, gameon.gameX(computerinput),numberofguesses);
+                numberofguesses++;
+            }
+        }
+
+    }
+}
